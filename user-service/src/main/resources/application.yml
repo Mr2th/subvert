@@ -1,0 +1,31 @@
+
+server:
+  port: 3699
+  servlet:
+    context-path: /subvert/htt/user
+  max-http-request-header-size: 51200
+
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      minimum-idle: 20
+      maximum-pool-size: 100
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+#      connection-test-query: SELECT 1
+
+#logging:
+#  level:
+#    com.zaxxer.hikari: DEBUG
+#    org.springframework.jdbc: DEBUG
+#    org.hibernate: DEBUG
+
+

@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: common
+
+  profiles:
+    active: dev
+
+
+jwt:
+  secret-key: subvertKey
+  expiration-time: 15 * 60 * 1000 # 15分钟
