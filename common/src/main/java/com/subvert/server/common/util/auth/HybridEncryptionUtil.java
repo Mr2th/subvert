@@ -19,6 +19,10 @@ import java.util.Base64;
 
 public class HybridEncryptionUtil {
 
+    private HybridEncryptionUtil() {
+        throw new AssertionError("HybridEncryptionUtil cannot be instantiated");
+    }
+
     // 生成RSA密钥对
     public static KeyPair generateRSAKeyPair() throws NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
