@@ -1,9 +1,15 @@
 package com.subvert.server.service;
 
+import com.subvert.server.common.util.PageUtil;
 import com.subvert.server.common.util.Result;
-import com.subvert.server.dto.LoginDto;
-import com.subvert.server.dto.LogoutDto;
-import com.subvert.server.vo.LoginVo;
+import com.subvert.server.dto.AddUserDto;
+import com.subvert.server.dto.GetUserDto;
+import com.subvert.server.dto.ModifyUserDto;
+import com.subvert.server.dto.QueryPageUserDto;
+import com.subvert.server.dto.RemoveUserDto;
+import com.subvert.server.vo.GetUserVo;
+
+import java.util.List;
 
 /**
  * @author xujianguo
@@ -13,7 +19,15 @@ import com.subvert.server.vo.LoginVo;
 
 public interface UserService {
 
-    Result<LoginVo> login(LoginDto loginDto);
+    Result<GetUserVo> queryUser(GetUserDto getUserDto);
 
-    Result logout(LogoutDto logoutDto);
+    void removeUser(RemoveUserDto removeUserDto);
+
+    void addUser(AddUserDto addUserDto);
+
+    void modifyUser(ModifyUserDto modifyUserDto);
+
+    Result<PageUtil> queryPageUser(QueryPageUserDto queryPageUserDto);
+
+    void removeUsers(RemoveUserDto removeUserDto);
 }

@@ -102,6 +102,18 @@
             <artifactId>dubbo-common</artifactId>
             <version>3.2.10</version>
         </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-core</artifactId>
+            <version>3.5.10.1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

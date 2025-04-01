@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.subvert.server.mapper.UserMapper">
+    
+    <resultMap id="userResultMap" type="com.subvert.server.entity.UserEntity">
+        <result column="user_id" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="screen_name" property="screenName"/>
+        <result column="password" property="password"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="email" property="email"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+    <!-- 查询用户 -->
+    <select id="selectUserById" parameterType="java.lang.Long" resultType="userResultMap">
+        SELECT * FROM subvert_user WHERE user_id = #{userId, jdbcType=INTEGER}
+    </select>
+
+    <!-- 插入用户 -->
+    <insert id="insertUser" parameterType="com.subvert.server.entity.UserEntity">
+        INSERT INTO subvert_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="screenName != null and screenName != ''">
+                screen_name,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number,
+            </if>
+            <if test="email != null and email != ''">
+                email,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id, jdbcType=BIGINT},
+            </if>
+            <if test="username != null and username != ''">
+                #{username, jdbcType=VARCHAR},
+            </if>
+            <if test="screenName != null and screenName != ''">
+                #{screenName, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                #{phoneNumber, jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email != ''">
+                #{email, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新用户 -->
+    <update id="updateUser" parameterType="com.subvert.server.entity.UserEntity">
+        UPDATE subvert_user
+        <set>
+            <if test="screenName != null and screenName != ''">
+                screen_name = #{screenName, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number = #{phoneNumber, jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId, jdbcType=INTEGER}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUser" parameterType="java.lang.Long">
+        DELETE FROM subvert_user WHERE user_id = #{userId, jdbcType=INTEGER}
+    </delete>
+
+</mapper>
